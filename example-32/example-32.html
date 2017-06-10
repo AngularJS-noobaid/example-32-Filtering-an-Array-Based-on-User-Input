@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+	
+<html>
+	<head>
+		<title>Filtering an Array Based on User Input</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	
+	</head>	
+
+	<body ng-app="myApp">
+		<h1>AngularJS Tutorial: Root Scope and Filters</h1>	
+
+		<h2>Example #1: Root Scope</h2>	
+
+		<h3>The scope of the following element is:</h3>
+		<h3>{{whichScope}}</h3>
+
+		<div ng-controller="myCtrl">
+    			<h3>The scope of the following element is:</h3>
+    			<h3>{{whichScope}}</h3>
+		</div>
+
+		<h3>The scope of the following element is:</h3>
+		<h3>{{whichScope}}</h3>
+
+		<h2>Example #2: Adding Filters to Expressions</h2>
+		
+		<div ng-init="myText='Filters can be added in AngularJS to format data';
+				myCurrency=17;myArr=['HTML', 'CSS', 'AngularJS', 'JavaScript']">
+			<h3>{{myText | uppercase}}</h3>
+			
+			<h3>{{myText | lowercase}}</h3>
+			
+			<h3>17 formatted as currency appears as: {{myCurrency| currency}}</h3>
+	
+
+			<h3>Result of applying the filter 'va' to the array {{myArr}}:</h3>
+			
+			<ul>
+  				<li ng-repeat="elem in myArr | filter : 'va'">
+    					<h3>{{elem}}</h3>
+ 				 </li>
+			</ul>
+
+			
+			<h3>Result of applying the filter 'vac' to the array {{myArr}}:</h3>			
+
+			<ul>
+  				<li ng-repeat="elem in myArr | filter : 'vac'">
+    					<h3>{{elem}}</h3>
+ 				 </li>
+			</ul>
+
+			<h2>Example #3: Filtering an Array Based on User Input</h2>
+
+			<p><input type="text" ng-model="userFilter"></p>
+
+			<ul>
+ 				<li ng-repeat="elem in myArr | filter : userFilter">
+   				 	<h3>{{elem}}</h3>
+  				</li>
+			</ul>
+
+		</div>
+
+
+		<script>
+			var app = angular.module('myApp', []);
+			
+			app.run(function($rootScope) {
+    				$rootScope.whichScope = 'The root scope';
+			});
+
+			app.controller('myCtrl', function($scope) {
+    				$scope.whichScope = "Not the root scope";
+			});
+		</script>
+	</body>
+</html> 
